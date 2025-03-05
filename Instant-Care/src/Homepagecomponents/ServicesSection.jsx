@@ -7,6 +7,8 @@ import { BloodBank } from "../Features.jsx/BloodBank";
 import { Appointment } from "../Features.jsx/Appointment";
 import { EmergencyServices } from "../Features.jsx/EmergencyServices";
 import { HospitalBed } from '../Features.jsx/HospitalBed';
+// import BookingForm from "../Features.jsx/BookingForm";
+import Map from "./Map";
 
 function ServicesSection() {
   const [selectedService, setSelectedService] = useState('');
@@ -45,7 +47,7 @@ function ServicesSection() {
       title: 'Nearby Hospital Map',
       description: 'Locate nearby hospitals on an interactive map.',
       image: 'https://static01.nyt.com/images/2020/12/15/us/covid-hospitals-near-you-promo-1608045359674/covid-hospitals-near-you-promo-1608045359674-superJumbo-v4.jpg',
-      link: '/',
+      link: '/Map',
     },
     {
       id: 'ai-chatbot',
@@ -106,6 +108,7 @@ function ServicesSection() {
 <Route path="/blood-bank" element={<BloodBank />} />
 <Route path="/appointment" element={<Appointment />} />
 <Route path="/emergency-services" element={<EmergencyServices />} />
+<Route path="Map" element={<Map/>} />
 </Routes>
 </>
   );

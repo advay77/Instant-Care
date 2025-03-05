@@ -40,7 +40,7 @@ function Navbar() {
             <li className="nav-item">
               <Link
                 className="nav-link"
-                to="/about-page"
+                to="/About"
                 style={{
                   color: '#FBFBFB',
                   transition: 'font-weight 0.3s ease',
@@ -68,7 +68,7 @@ function Navbar() {
             <li className="nav-item">
               <Link
                 className="nav-link"
-                to="/contact"
+                to="/Contact"
                 style={{
                   color: '#FBFBFB',
                   transition: 'font-weight 0.3s ease',
@@ -84,7 +84,7 @@ function Navbar() {
             <li className="nav-item">
               <Link
                 className="nav-link"
-                to="/signin"
+                to="/Signin"
                 style={{
                   color: '#FBFBFB',
                   transition: 'font-weight 0.3s ease',
