@@ -213,7 +213,7 @@ export const Appointment = () => {
               </div>
 
               <div className="d-grid">
-                <button type="submit" className="btn btn-primary btn-lg">
+                <button type="submit" className="btn btn-lg"  style={{backgroundColor: "#982cca", color: "#FFFFFF"}}>
                   Book Appointment
                 </button>
               </div>

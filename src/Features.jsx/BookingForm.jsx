@@ -143,7 +143,8 @@ function BookingForm({ selectedHospital, onSubmit }) {
       <button
         type="submit"
         disabled={!selectedHospital}
-        className="btn btn-primary w-100"
+        className="btn w-100"
+        style={{color: "#982cca"}}
       >
         <AlertCircle className="h-5 w-5 me-2" />
         Book Emergency Bed

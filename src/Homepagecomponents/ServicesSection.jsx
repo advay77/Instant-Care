@@ -1,14 +1,6 @@
- import React, { useState } from 'react';
-import './ServicesSection.css'; 
-import { Routes, Route } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import './ServicesSection.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BloodBank } from "../Features.jsx/BloodBank";
-import { Appointment } from "../Features.jsx/Appointment";
-import { EmergencyServices } from "../Features.jsx/EmergencyServices";
-import { HospitalBed } from '../Features.jsx/HospitalBed';
-// import BookingForm from "../Features.jsx/BookingForm";
-// import Map from "./Map";
 
 function ServicesSection() {
   const [selectedService, setSelectedService] = useState('');
@@ -25,7 +17,7 @@ function ServicesSection() {
       id: 'emergency-services',
       title: 'Emergency Services Contact',
       description: 'Get instant access to emergency contacts and services in your area.',
-      image: 'https://static.vecteezy.com/system/resources/previews/051/571/864/non_2x/medical-service-man-with-work-hat-and-red-jacket-and-side-promotion-campaign-standing-in-front-of-car-with-call-number-for-quick-response-call-vector.jpg',
+      image: 'https://thumbs.dreamstime.com/b/vector-character-illustration-emergency-service-teams-isolated-firefighters-next-to-fire-engine-police-officers-car-197130020.jpg',
       link: '/emergency-services',
     },
     {
@@ -40,7 +32,7 @@ function ServicesSection() {
       title: 'Appointment Booking',
       description: 'Book appointments with doctors and specialists online.',
       image: 'https://heloix.com/wp-content/uploads/2023/10/doctor-appoint.jpg',
-      link: '/appointment-booking',
+      link: '/appointment',
     },
     {
       id: 'nearby-hospitals',
@@ -49,22 +41,13 @@ function ServicesSection() {
       image: 'https://static01.nyt.com/images/2020/12/15/us/covid-hospitals-near-you-promo-1608045359674/covid-hospitals-near-you-promo-1608045359674-superJumbo-v4.jpg',
       link: 'https://melodious-duckanoo-16659d.netlify.app/',
     },
-    // {
-    //   id: 'ai-chatbot',
-    //   title: 'AI Chatbot',
-    //   description: 'Get instant answers to your health-related questions with our AI chatbot.',
-    //   image: 'https://www.shutterstock.com/image-illustration/cute-smiling-white-artificial-intelligence-600nw-2278627589.jpg',
-    //   link: '/',
-    // },
   ];
-  const navigate = useNavigate();
 
   const handleServiceChange = (e) => {
     setSelectedService(e.target.value);
   };
 
   return (
-    <>
     <section className="services-section" style={{ backgroundColor: "#F9F9FF" }}>
       <div className="container">
         <h2 className="section-title">Our Services</h2>
@@ -78,19 +61,22 @@ function ServicesSection() {
             ))}
           </select>
           {selectedService && (
-            <a href={services.find((s) => s.id === selectedService).link} className="go-button">Go</a>
+            <a
+              href={services.find((s) => s.id === selectedService).link}
+              className="go-button"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Go
+            </a>
           )}
         </div>
         <div className="row justify-content-center">
           {services.map((service) => (
             <div className="col-md-4" key={service.id}>
               <div className="service-box">
-                <a href={service.link}>
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="img-fluid"
-                  />
+                <a href={service.link} target="_blank" rel="noopener noreferrer">
+                  <img src={service.image} alt={service.title} className="img-fluid" />
                   <div className="overlay">
                     <h3>{service.title}</h3>
                     <p>{service.description}</p>
@@ -102,15 +88,6 @@ function ServicesSection() {
         </div>
       </div>
     </section>
-
-<Routes>
-<Route path="/hospital-beds" element={<HospitalBed />} />
-<Route path="/blood-bank" element={<BloodBank />} />
-<Route path="/appointment" element={<Appointment />} />
-<Route path="/emergency-services" element={<EmergencyServices />} />
-{/* <Route path="Map" element={<Map/>} /> */}
-</Routes>
-</>
   );
 }
 
