@@ -1,14 +1,14 @@
-import {Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import HeroSection from './components/HeroSection';
 import Signin from "./Homepagecomponents/Signin";
 import HomePage from "./components/HomePage";
 import { BloodBank } from "./Features.jsx/BloodBank";
 import { Appointment } from "./Features.jsx/Appointment";
 import { EmergencyServices } from "./Features.jsx/EmergencyServices";
-import { HospitalBed } from "../Features.jsx/HospitalBed";
-import Navbar from "./Homepagecomponents/Navbar";
-import Footer from "./Homepagecomponents/Footer";
-import Chatbot from "./Homepagecomponents/Chatbot";
+import { HospitalBed } from "./Features.jsx/HospitalBed";
+// import Footer from './Homepagecomponents/Footer';
+// import Navbar from './Homepagecomponents/Navbar';
+// import Chatbot from './Homepagecomponents/Chatbot';
 
 function App() {
   return (
@@ -16,28 +16,32 @@ function App() {
       <Routes>
         <Route path="/" element={<HeroSection />} />
         <Route path="/signin" element={<Signin />} />
-        <Route
-          path="/HomePage/*"
-          element={
-            <>
-              <Navbar />
-              <HomePage />
-              <Footer />
-              <Chatbot />
-            </>
-          }
-        >
-          <Route path="hospital-beds" element={<HospitalBed />} />
-          <Route path="blood-bank" element={<BloodBank />} />
-          <Route path="appointment" element={<Appointment />} />
-          <Route path="emergency-services" element={<EmergencyServices />} />
-        </Route>
-      </Routes>
+        <Route path="/HomePage" element={<HomePage />} />
+        <Route path="/hospital-beds" element={<HospitalBed />} />
+        <Route path="/blood-bank" element={<BloodBank />} />
+        <Route path="/appointment" element={<Appointment />} />
+        <Route path="/emergency-services" element={<EmergencyServices />} />
+        {/* <Route
+        path="/emergency-services"
+        element={
+          <Footer >
+            <Navbar >
+              <Chatbot >
+            <EmergencyServices />
+            </Chatbot>
+            </Navbar>
+            </Footer>
+        }
+      /> */}
+    </Routes>
       </>
   );
 }
 
 export default App;
+
+
+
 
 
 
