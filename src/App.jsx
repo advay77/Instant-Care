@@ -6,40 +6,51 @@ import { BloodBank } from "./Features.jsx/BloodBank";
 import { Appointment } from "./Features.jsx/Appointment";
 import { EmergencyServices } from "./Features.jsx/EmergencyServices";
 import { HospitalBed } from "./Features.jsx/HospitalBed";
-// import Footer from './Homepagecomponents/Footer';
-// import Navbar from './Homepagecomponents/Navbar';
-// import Chatbot from './Homepagecomponents/Chatbot';
+import Layout from './components/Layout';
 
 function App() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<HeroSection />} />
-        <Route path="/signin" element={<Signin />} />
-        <Route path="/HomePage" element={<HomePage />} />
-        <Route path="/hospital-beds" element={<HospitalBed />} />
-        <Route path="/blood-bank" element={<BloodBank />} />
-        <Route path="/appointment" element={<Appointment />} />
-        <Route path="/emergency-services" element={<EmergencyServices />} />
-        {/* <Route
+    <Routes>
+      <Route path="/" element={<HeroSection />} />
+      <Route path="/signin" element={<Signin />} />
+      <Route path="/HomePage" element={<HomePage />} />
+      <Route
+        path="/hospital-beds"
+        element={
+          <Layout>
+            <HospitalBed />
+          </Layout>
+        }
+      />
+      <Route
+        path="/blood-bank"
+        element={
+          <Layout>
+            <BloodBank />
+          </Layout>
+        }
+      />
+      <Route
+        path="/appointment"
+        element={
+          <Layout>
+            <Appointment />
+          </Layout>
+        }
+      />
+      <Route
         path="/emergency-services"
         element={
-          <Footer >
-            <Navbar >
-              <Chatbot >
+          <Layout>
             <EmergencyServices />
-            </Chatbot>
-            </Navbar>
-            </Footer>
+          </Layout>
         }
-      /> */}
+      />
     </Routes>
-      </>
   );
 }
 
 export default App;
-
 
 
 
