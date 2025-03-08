@@ -1,4 +1,4 @@
-# Health Sahayak - Your Digital Healthcare Assistant
+# ⚡ Health Sahayak - Your Digital Healthcare Assistant
 
 Welcome to Health Sahayak 🏥, a one-stop solution for all your healthcare needs! 🚀 This platform is designed to provide seamless access to essential medical services, including appointment booking, emergency contacts, hospital bed availability, and blood bank information.
 
@@ -50,6 +50,12 @@ For production-level applications, it's best to integrate TypeScript for type sa
 ➡️ Check out the TypeScript template to get started!
 
 ➡️ Learn more about typescript-eslint for enforcing type-based linting.
+
+
+## 😎 PREVIEW 
+
+![Screenshot 2025-03-08 194108](https://github.com/user-attachments/assets/0e986048-2f40-4f24-9825-0e9a63a11a53)
+
 
 ## 🚀 Deployment
 
