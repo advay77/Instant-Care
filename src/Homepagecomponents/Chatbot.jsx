@@ -1,18 +1,19 @@
+
 import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import './Chatbot.css';
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { text: "Hello! How can I help you today? 👋", sender: "bot" }
+    { text: "Hello! I'm your HealthCare Assistant, focusing on health and Ayurveda. How can I help you today? 👋", sender: "bot" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const apiKey = 'AIzaSyB4OPrYOlBCIC3Gl66vZ7Aj3hYJsCaNH1I';
+  const apiKey = 'AIzaSyB4OPrYOlBCIC3Gl66vZ7Aj3hYJsCaNH1I'; // Replace with your actual API key
 
   const handleUserInput = async () => {
     if (!input.trim()) return;
@@ -23,6 +24,8 @@ const Chatbot = () => {
     setIsLoading(true);
 
     try {
+      const prompt = `You are a HealthCare Assistant specializing in health and Ayurveda. Respond to the user's query while strictly staying within the domain of health and redefining health with Ayurveda. User query: ${input}`;
+
       const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
         method: 'POST',
         headers: {
@@ -30,13 +33,18 @@ const Chatbot = () => {
         },
         body: JSON.stringify({
           contents: [{
-            parts: [{ text: input }]
+            parts: [{ text: prompt }]
           }]
         })
       });
       const data = await response.json();
-      const botMessage = { text: data.candidates[0].content.parts[0].text, sender: 'bot' };
-      setMessages((prevMessages) => [...prevMessages, botMessage]);
+      if (data.candidates && data.candidates.length > 0 && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts.length > 0) {
+        const botMessage = { text: data.candidates[0].content.parts[0].text, sender: 'bot' };
+        setMessages((prevMessages) => [...prevMessages, botMessage]);
+      } else {
+        const errorMessage = { text: "Sorry, I couldn't process your request within the health and Ayurveda scope. Please try again later.", sender: 'bot' };
+        setMessages((prevMessages) => [...prevMessages, errorMessage]);
+      }
     } catch (error) {
       console.error('Error fetching response from Gemini:', error);
       const errorMessage = { text: "Sorry, I couldn't process your request. Please try again later.", sender: 'bot' };
@@ -68,18 +76,18 @@ const Chatbot = () => {
       {isOpen && (
         <div className="chat-window" style={{ height: '400px', maxHeight: '60vh' }}>
           <div className="chat-header" style={{ position: 'relative' }}>
-            HealthCare Assistant
-            <FontAwesomeIcon 
-              icon={faTimesCircle} 
-              onClick={toggleChat} 
-              style={{ 
-                position: 'absolute', 
-                right: '10px', 
-                top: '50%', 
-                transform: 'translateY(-50%)', 
-                cursor: 'pointer', 
-                color: 'white' 
-              }} 
+            HealthCare Assistant (Ayurveda)
+            <FontAwesomeIcon
+              icon={faTimesCircle}
+              onClick={toggleChat}
+              style={{
+                position: 'absolute',
+                right: '10px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                cursor: 'pointer',
+                color: 'white'
+              }}
             />
           </div>
           <div className="chat-body" id="chatBody" style={{ height: 'calc(100% - 100px)' }}>

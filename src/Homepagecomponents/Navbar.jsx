@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light sticky-top" style={{ backgroundColor: '#B2A5FF', height: '60px' }}>
+    <nav className="navbar navbar-expand-lg navbar-light sticky-top" style={{ backgroundColor: '#693382', height: '60px' }}>
       <div className="container-fluid">
         <Link className="navbar-brand" to="/" style={{ color: '#FBFBFB', display: 'flex', alignItems: 'center' }}>
           <img src= 'logo-white.png' alt="Logo" style={{ height: '80px', marginRight: '8px' }} /> {/* Logo image */}
@@ -27,7 +27,7 @@ function Navbar() {
               <Link
                 className="nav-link active"
                 aria-current="page"
-                to="/"
+                to="#"
                 style={{
                   color: '#FBFBFB',
                   transition: 'font-weight 0.3s ease', // Smooth transition
@@ -41,7 +41,7 @@ function Navbar() {
             <li className="nav-item">
               <Link
                 className="nav-link"
-                to="/About"
+                to="#"
                 style={{
                   color: '#FBFBFB',
                   transition: 'font-weight 0.3s ease',
@@ -49,13 +49,13 @@ function Navbar() {
                 onMouseOver={(e) => (e.target.style.fontWeight = 'bold')}
                 onMouseOut={(e) => (e.target.style.fontWeight = 'normal')}
               >
-                About
+                Ayurvedic Health
               </Link>
             </li>
             <li className="nav-item">
               <Link
                 className="nav-link"
-                to="/services"
+                to="#"
                 style={{
                   color: '#FBFBFB',
                   transition: 'font-weight 0.3s ease',
@@ -69,7 +69,7 @@ function Navbar() {
             <li className="nav-item">
               <Link
                 className="nav-link"
-                to="/Contact"
+                to="#"
                 style={{
                   color: '#FBFBFB',
                   transition: 'font-weight 0.3s ease',
