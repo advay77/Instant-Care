@@ -1,87 +1,167 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { 
+  Heart, 
+  Stethoscope, 
+  Pill, 
+  Calendar, 
+  Droplet, 
+  Clock, 
+  Phone, 
+  Activity 
+} from 'lucide-react';
 import './ServicesSection.css';
-import "bootstrap/dist/css/bootstrap.min.css";
 
 function ServicesSection() {
-  const [selectedService, setSelectedService] = useState('');
+  const navigate = useNavigate();
 
   const services = [
     {
-      id: 'hospital-bed',
-      title: 'Real-time Hospital Bed Availability',
-      description: 'Find available beds in nearby hospitals quickly and easily.',
-      image: 'https://images.hindustantimes.com/rf/image_size_630x354/HT/p2/2020/08/07/Pictures/noida-covid-hospital_3fb50948-d8a4-11ea-a06f-e722baeaa470.jpg',
-      link: '/hospital-beds',
+      icon: <Stethoscope size={32} />,
+      title: "Medical Consultation",
+      description: "Expert medical consultation from experienced healthcare professionals available 24/7.",
+      color: "#FF6B6B",
+      path: "/services/medical-consultation",
+      features: [
+        "24/7 availability",
+        "Expert healthcare professionals",
+        "Quick response time",
+        "Follow-up care"
+      ]
     },
     {
-      id: 'emergency-services',
-      title: 'Emergency Services Contact',
-      description: 'Get instant access to emergency contacts and services in your area.',
-      image: 'https://thumbs.dreamstime.com/b/vector-character-illustration-emergency-service-teams-isolated-firefighters-next-to-fire-engine-police-officers-car-197130020.jpg',
-      link: '/emergency-services',
+      icon: <Calendar size={32} />,
+      title: "Online Appointments",
+      description: "Easy and quick appointment booking with your preferred healthcare provider.",
+      color: "#4ECDC4",
+      path: "/services/appointments",
+      features: [
+        "Easy booking process",
+        "Multiple healthcare providers",
+        "Flexible scheduling",
+        "Appointment reminders"
+      ]
     },
     {
-      id: 'blood-bank',
-      title: 'Blood Bank Availability',
-      description: 'Check real-time blood availability at nearby blood banks.',
-      image: 'https://images.onlymyhealth.com/imported/images/2024/June/14_Jun_2024/mn-donor.jpg',
-      link: '/blood-bank',
+      icon: <Pill size={32} />,
+      title: "Ayurvedic Treatment",
+      description: "Traditional Ayurvedic treatments and therapies for holistic healing.",
+      color: "#45B7D1",
+      path: "/services/ayurvedic",
+      features: [
+        "Traditional treatments",
+        "Holistic healing approach",
+        "Experienced practitioners",
+        "Personalized care plans"
+      ]
     },
     {
-      id: 'appointment-booking',
-      title: 'Appointment Booking',
-      description: 'Book appointments with doctors and specialists online.',
-      image: 'https://heloix.com/wp-content/uploads/2023/10/doctor-appoint.jpg',
-      link: '/appointment',
+      icon: <Droplet size={32} />,
+      title: "Blood Bank Services",
+      description: "24/7 blood bank services with quick processing and safe blood supply.",
+      color: "#96CEB4",
+      path: "/services/blood-bank",
+      features: [
+        "24/7 availability",
+        "Quick processing",
+        "Safe blood supply",
+        "Emergency services"
+      ]
     },
     {
-      id: 'nearby-hospitals',
-      title: 'Nearby Hospital Map',
-      description: 'Locate nearby hospitals on an interactive map.',
-      image: 'https://static01.nyt.com/images/2020/12/15/us/covid-hospitals-near-you-promo-1608045359674/covid-hospitals-near-you-promo-1608045359674-superJumbo-v4.jpg',
-      link: 'https://melodious-duckanoo-16659d.netlify.app/',
+      icon: <Clock size={32} />,
+      title: "Emergency Care",
+      description: "Round-the-clock emergency medical services with quick response time.",
+      color: "#FF9F9F",
+      path: "/services/emergency",
+      features: [
+        "24/7 emergency response",
+        "Quick medical attention",
+        "Critical care facilities",
+        "Ambulance services"
+      ]
     },
+    {
+      icon: <Activity size={32} />,
+      title: "Health Monitoring",
+      description: "Continuous health monitoring and tracking for better healthcare outcomes.",
+      color: "#6C5CE7",
+      path: "/services/monitoring",
+      features: [
+        "Real-time monitoring",
+        "Health data tracking",
+        "Regular assessments",
+        "Progress reports"
+      ]
+    },
+    {
+      icon: <Heart size={32} />,
+      title: "Specialized Care",
+      description: "Specialized medical care services across various health domains.",
+      color: "#A8E6CF",
+      path: "/services/specialized",
+      features: [
+        "Expert specialists",
+        "Advanced treatments",
+        "Multiple specialties",
+        "Coordinated care"
+      ]
+    },
+    {
+      icon: <Phone size={32} />,
+      title: "Telemedicine",
+      description: "Virtual consultations and medical advice from the comfort of your home.",
+      color: "#FFDAC1",
+      path: "/services/telemedicine",
+      features: [
+        "Virtual consultations",
+        "Remote prescriptions",
+        "Digital health records",
+        "Follow-up care"
+      ]
+    }
   ];
 
-  const handleServiceChange = (e) => {
-    setSelectedService(e.target.value);
+  const handleLearnMore = (service) => {
+    navigate(service.path, { 
+      state: { 
+        service: {
+          ...service,
+          icon: null // Remove icon as it's a React element and can't be serialized
+        }
+      }
+    });
   };
 
   return (
-    <section className="services-section" style={{ backgroundColor: "#F9F9FF" }}>
-      <div className="container">
-        <h2 className="section-title">Our Services</h2>
-        <div className="search-bar">
-          <select value={selectedService} onChange={handleServiceChange}>
-            <option value="">Select a service...</option>
-            {services.map((service) => (
-              <option key={service.id} value={service.id}>
-                {service.title}
-              </option>
-            ))}
-          </select>
-          {selectedService && (
-            <a
-              href={services.find((s) => s.id === selectedService).link}
-              className="go-button"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Go
-            </a>
-          )}
+    <section className="services-section">
+      <div className="container py-5">
+        <div className="text-center mb-5">
+          <h2 className="section-title">Our Services</h2>
+          <p className="section-subtitle">Comprehensive Healthcare Solutions for Your Well-being</p>
         </div>
-        <div className="row justify-content-center">
-          {services.map((service) => (
-            <div className="col-md-4" key={service.id}>
-              <div className="service-box">
-                <a href={service.link} target="_blank" rel="noopener noreferrer">
-                  <img src={service.image} alt={service.title} className="img-fluid" />
-                  <div className="overlay">
-                    <h3>{service.title}</h3>
-                    <p>{service.description}</p>
-                  </div>
-                </a>
+
+        <div className="row g-4">
+          {services.map((service, index) => (
+            <div key={index} className="col-md-6 col-lg-3">
+              <div className="service-card">
+                <div 
+                  className="icon-wrapper"
+                  style={{ 
+                    backgroundColor: `${service.color}15`,
+                    color: service.color 
+                  }}
+                >
+                  {service.icon}
+                </div>
+                <h3 className="service-title">{service.title}</h3>
+                <p className="service-description">{service.description}</p>
+                <button 
+                  className="learn-more-btn"
+                  onClick={() => handleLearnMore(service)}
+                >
+                  Learn More
+                </button>
               </div>
             </div>
           ))}

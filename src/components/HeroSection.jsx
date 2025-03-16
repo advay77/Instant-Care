@@ -1,125 +1,36 @@
-// import React, { useState } from 'react';
-// import { Form, Link } from 'react-router-dom';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import Homepage from './HomePage'
-
-// const HeroSection = () => {
-
-//   return (
-//     <div
-//       className="hero-section"
-//       style={{
-//         position: "relative",
-//         overflow: "hidden",
-//         width: "100%",
-//         height: "100vh",
-//       }}
-//     >
-//       {/* Video Background */}
-//       <video autoPlay loop muted playsInline style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover", zIndex: 0,
-//         }}
-//       >
-//         <source
-//           src="/vecteezy_animation-of-doctor-checking-patient-s-health-condition_46664534.mp4"
-//           type="video/mp4"
-//         />
-//         Your browser does not support the video tag.
-//       </video>
-
-//       {/* Overlay */}
-//       <div
-//         style={{
-//           position: "absolute",
-//           top: 0,
-//           left: 0,
-//           width: "100%",
-//           height: "100%",
-//           backgroundColor: "rgba(0, 0, 0, 0.5)",
-//           zIndex: 1,
-//         }}
-//       />
-
-//       {/* Content */}
-//       <section
-//         className="hero text-white py-5"
-//         style={{ position: "relative", zIndex: 2 }}
-//       >
-//         <div className="container text-center py-5 my-5">
-//           <h1
-//             className="display-4 mb-3 fw-bold"
-//             style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.5)" }}
-//           >
-//             Find Available HealthCare Facilities in Real-Time
-//           </h1>
-//           <p
-//             className="lead mb-4 fw-semibold"
-//             style={{ textShadow: "1px 1px 2px rgba(0,0,0,0.5)" }}
-//           >
-//             Quickly locate and secure hospital beds during emergencies or
-//             planned visits.
-//           </p>
-          
-//           <button
-//             className="btn btn-danger btn-lg"
-//             // onClick={handleEmergency}
-
-//             style={{
-//               animation: "pulse 2s infinite",
-//               boxShadow: "0 0 0 0 rgba(220, 53, 69, 0.7)",
-//             }}
-//           >
-//             <Link to="/Homepage" className='text-white text-decoration-none'>Get Started</Link>
-//             {/* Emergency */}
-            
-//           </button>
-//         </div>
-//         <Homepage />
-//       </section>
-
-//       <style>
-//         {`
-//           @keyframes pulse {
-//             0% {
-//               box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
-//             }
-//             70% {
-//               box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
-//             }
-//             100% {
-//               box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
-//             }
-//           }
-
-//           .hero {
-//             max-height: 100vh;
-//             display: flex;
-//             align-items: center;
-//           }
-
-//           .form-control:focus {
-//             box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
-//             border-color: #28a745;
-//           }
-//         `}
-//       </style>
-//     </div>
-//   );
-// };
-
-// export default HeroSection;
-
-
-
-
-
-
-
-
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const HeroSection = () => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    // Lazy load video for better performance
+    if (videoRef.current) {
+      videoRef.current.load();
+    }
+
+    // Add intersection observer for animation
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      animatedElements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
+
   return (
     <div
       className="hero-section"
@@ -133,12 +44,15 @@ const HeroSection = () => {
         justifyContent: "center",
       }}
     >
-      {/* Video Background */}
+      {/* Video Background with loading optimization */}
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
+        preload="none"
+        aria-hidden="true"
         style={{
           position: "absolute",
           width: "100%",
@@ -154,10 +68,10 @@ const HeroSection = () => {
           src="/vecteezy_animation-of-doctor-checking-patient-s-health-condition_46664534.mp4"
           type="video/mp4"
         />
-        Your browser does not support the video tag.
+        <track kind="captions" />
       </video>
 
-      {/* Overlay */}
+      {/* Overlay with gradient */}
       <div
         style={{
           position: "absolute",
@@ -165,7 +79,7 @@ const HeroSection = () => {
           left: 0,
           width: "100%",
           height: "100%",
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          background: "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4))",
           zIndex: 1,
         }}
       />
@@ -174,33 +88,50 @@ const HeroSection = () => {
       <section
         className="hero text-white py-5"
         style={{ position: "relative", zIndex: 2 }}
+        role="banner"
+        aria-label="Hero section"
       >
         <div className="container text-center py-5 my-5">
           <h1
-            className="display-4 mb-3 fw-bold"
-            style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.5)" }}
+            className="display-4 mb-4 fw-bold animate-on-scroll"
+            style={{
+              textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
+              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+            }}
           >
             Find Available HealthCare Facilities in Real-Time
           </h1>
           <p
-            className="lead mb-4 fw-semibold"
-            style={{ textShadow: "1px 1px 2px rgba(0,0,0,0.5)" }}
-          >
-            Quickly locate and secure hospital beds during emergencies or
-            planned visits.
-          </p>
-
-          <button
-            className="btn btn-danger btn-lg"
+            className="lead mb-5 fw-semibold animate-on-scroll"
             style={{
-              animation: "pulse 2s infinite",
-              boxShadow: "0 0 0 0 rgba(220, 53, 69, 0.7)",
+              textShadow: "1px 1px 2px rgba(0,0,0,0.5)",
+              fontSize: "clamp(1rem, 2vw, 1.25rem)",
+              maxWidth: "800px",
+              margin: "0 auto",
             }}
           >
-            <Link to="/Signin" className="text-white text-decoration-none hero-button">
+            Quickly locate and secure hospital beds during emergencies or
+            planned visits. Get instant access to healthcare services when you need them most.
+          </p>
+
+          <div className="d-flex justify-content-center gap-3 animate-on-scroll">
+            <Link
+              to="/Signin"
+              className="btn btn-danger btn-lg hero-button"
+              role="button"
+              aria-label="Get Started with Instant-Care"
+            >
               Get Started
             </Link>
-          </button>
+            <Link
+              to="/emergency-services"
+              className="btn btn-outline-light btn-lg emergency-button"
+              role="button"
+              aria-label="Access Emergency Services"
+            >
+              Emergency Services
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -225,23 +156,81 @@ const HeroSection = () => {
             justify-content: center;
           }
 
-          .form-control:focus {
-            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
-            border-color: #28a745;
+          .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
           }
-              .hero-button {
-                margin-top: 20px;
-                padding: 12px 24px;
-                font-size: 1.2rem;
-                font-weight: bold;
-                animation: fadeIn 1.8s ease-in-out;
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+
+          .animate-fade-in {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+          .hero-button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+          }
+
+          .hero-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+              120deg,
+              transparent,
+              rgba(255, 255, 255, 0.2),
+              transparent
+            );
+            transition: 0.5s;
+          }
+
+          .hero-button:hover::before {
+            left: 100%;
+          }
 
           .hero-button:hover {
-              transform: scale(1.1);
-              box-shadow: 0 0 15px rgba(220, 53, 69, 0.8);
-}
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+          }
+
+          .emergency-button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            font-weight: bold;
+            border-width: 2px;
+            transition: all 0.3s ease;
+          }
+
+          .emergency-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+          }
+
+          @media (max-width: 768px) {
+            .container {
+              padding: 0 1rem;
+            }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .hero-button,
+            .emergency-button,
+            .animate-on-scroll {
+              transition: none;
+              animation: none;
+            }
+          }
         `}
       </style>
     </div>
@@ -249,143 +238,3 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-
-// const HeroSection = () => {
-//   return (
-//     <div
-//       className="hero-section"
-//       style={{
-//         position: "relative",
-//         overflow: "hidden",
-//         width: "100%",
-//         height: "100vh",
-//       }}
-//     >
-//       {/* Video Background */}
-//       <video
-//         autoPlay
-//         loop
-//         muted
-//         playsInline
-//         style={{
-//           position: "absolute",
-//           width: "100%",
-//           height: "100%",
-//           objectFit: "cover",
-//           zIndex: 0,
-//         }}
-//       >
-//         <source
-//           src="/vecteezy_animation-of-doctor-checking-patient-s-health-condition_46664534.mp4"
-//           type="video/mp4"
-//         />
-//         Your browser does not support the video tag.
-//       </video>
-
-//       {/* Overlay */}
-//       <div
-//         style={{
-//           position: "absolute",
-//           top: 0,
-//           left: 0,
-//           width: "100%",
-//           height: "100%",
-//           backgroundColor: "rgba(0, 0, 0, 0.5)",
-//           zIndex: 1,
-//         }}
-//       />
-
-//       {/* Content */}
-//       <section
-//         className="hero text-white py-5"
-//         style={{ position: "relative", zIndex: 2 }}
-//       >
-//         <div className="container text-center py-5 my-5">
-//           <h1
-//             className="display-4 mb-3 fw-bold"
-//             style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.5)" }}
-//           >
-//             Find Available HealthCare Facilities in Real-Time
-//           </h1>
-//           <p
-//             className="lead mb-4 fw-semibold"
-//             style={{ textShadow: "1px 1px 2px rgba(0,0,0,0.5)" }}
-//           >
-//             Quickly locate and secure hospital beds during emergencies or
-//             planned visits.
-//           </p>
-
-//           <button
-//             className="btn btn-danger btn-lg"
-//             style={{
-//               animation: "pulse 2s infinite",
-//               boxShadow: "0 0 0 0 rgba(220, 53, 69, 0.7)",
-//             }}
-//           >
-//             <Link to="/Signin" className="text-white text-decoration-none hero-button">
-//               Get Started
-//             </Link>
-//           </button>
-//         </div>
-//       </section>
-
-//       <style>
-//         {`
-//           @keyframes pulse {
-//             0% {
-//               box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
-//             }
-//             70% {
-//               box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
-//             }
-//             100% {
-//               box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
-//             }
-//           }
-
-//           .hero {
-//             max-height: 100vh;
-//             display: flex;
-//             align-items: center;
-//           }
-
-//           .form-control:focus {
-//             box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
-//             border-color: #28a745;
-//           }
-//               .hero-button {
-//                 margin-top: 20px;
-//                 padding: 12px 24px;
-//                 font-size: 1.2rem;
-//                 font-weight: bold;
-//                 animation: fadeIn 1.8s ease-in-out;
-//                 transition: transform 0.3s ease, box-shadow 0.3s ease;
-// }
-
-//           .hero-button:hover {
-//               transform: scale(1.1);
-//               box-shadow: 0 0 15px rgba(220, 53, 69, 0.8);
-// }
-//         `}
-//       </style>
-//     </div>
-//   );
-// };
-
-// export default HeroSection;

@@ -1,157 +1,45 @@
-// import React, { useState } from 'react';
-
-// function ApplicationSection() {
-//   const [formData, setFormData] = useState({
-//     name: '',
-//     email: '',
-//     phone: '',
-//     message: '',
-//   });
-
-//   const handleChange = (e) => {
-//     setFormData({
-//       ...formData,
-//       [e.target.name]: e.target.value,
-//     });
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     // Here you would typically handle form submission, e.g., sending data to a server
-//     console.log('Form submitted:', formData); 
-//   };
-
-//   return (
-//     <section className="application-section" style={{padding: "50px 0"}}>
-//       <div className="container">
-//         <h2 className="section-title text-align-center" style={{marginBottom: "20px"}}>Fill Up Application</h2>
-//         <p className="section-description text-align-center" style={{marginBottom: "30px"}}>
-//           Join us in our mission to improve healthcare access. Fill out the application below and become a part of our growing team.
-//         </p>
-//         <form onSubmit={handleSubmit}>
-//           <div className="row">
-//             <div className="col-md-6">
-//               <div className="form-group" style={{marginBottom: "20px"}}>
-//                 <label htmlFor="name" style={{marginBottom: "5px"}} className='d-block'>Name:</label>
-//                 <input 
-//                   type="text" 
-//                   className="form-control" 
-//                   id="name" 
-//                   name="name" 
-//                   value={formData.name} 
-//                   onChange={handleChange} 
-//                   required 
-//                 />
-//               </div>
-//             </div>
-//             <div className="col-md-6">
-//               <div className="form-group" style={{marginBottom: "20px"}}>
-//                 <label htmlFor="email" style={{marginBottom: "5px"}} className='d-block'>Email:</label>
-//                 <input 
-//                   type="email" 
-//                   className="form-control" 
-//                   id="email" 
-//                   name="email" 
-//                   value={formData.email} 
-//                   onChange={handleChange} 
-//                   required 
-//                 />
-//               </div>
-//             </div>
-//           </div>
-//           <div className="row">
-//             <div className="col-md-6">
-//               <div className="form-group" style={{marginBottom: "20px"}}>
-//                 <label htmlFor="phone" style={{marginBottom: "5px"}} className='d-block'>Phone:</label>
-//                 <input 
-//                   type="tel" 
-//                   className="form-control" 
-//                   id="phone" 
-//                   name="phone" 
-//                   value={formData.phone} 
-//                   onChange={handleChange} 
-//                   required 
-//                 />
-//               </div>
-//             </div>
-//           </div>
-//           <div className="form-group" style={{marginBottom: "20px"}}>
-//             <label htmlFor="message" style={{marginBottom: "5px"}} className='d-block'>Message:</label>
-//             <textarea 
-//               className="form-control" 
-//               id="message" 
-//               name="message" 
-//               rows="5" 
-//               value={formData.message} 
-//               onChange={handleChange} 
-//             />
-//           </div>
-//           <button type="submit" className="btn" style={{backgroundColor :'#B2A5FF'}}>Submit Application</button>
-//         </form>
-//       </div>
-//     </section>
-//   );
-// }
-
-// export default ApplicationSection;
-
-
-
-
-
-
-
-
-import React, { useState } from "react";
-import "./ApplicationRating.css";
+import React from 'react';
+import './ApplicationSection.css';
 
 function ApplicationSection() {
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState("");
-
-  const handleRating = (rate) => {
-    setRating(rate);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Rating Submitted:", { rating, comment });
-  };
-
   return (
-    <section className="rating-section">
+    <div className="application-section">
       <div className="container">
-        <h2 className="section-title">Rate Our Services</h2>
-        <p className="section-description">
-          Your feedback helps us improve. Please rate your experience with our healthcare services.
-        </p>
-        <form onSubmit={handleSubmit}>
-          <div className="rating-stars">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <span
-                key={star}
-                className={`star ${star <= rating ? "filled" : ""}`}
-                onClick={() => handleRating(star)}
-              >
-                ★
-              </span>
-            ))}
-          </div>
-          <div className="form-group">
-            <label htmlFor="comment">Additional Comments:</label>
-            <textarea
-              className="form-control"
-              id="comment"
-              name="comment"
-              rows="4"
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
+        <div className="row">
+          <div className="col-md-6">
+            <img 
+              src="https://img.freepik.com/free-vector/medical-video-call-consultation-illustration_88138-415.jpg?w=740&t=st=1709907552~exp=1709908152~hmac=6c3c2d0f6c0c4c7f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3" 
+              alt="Mobile Application" 
+              className="img-fluid"
             />
           </div>
-          <button type="submit" className="btn submit-btn">Submit Rating</button>
-        </form>
+          <div className="col-md-6 d-flex align-items-center">
+            <div className="content">
+              <h2>Download Our Mobile App</h2>
+              <p>
+                Get instant access to healthcare services, book appointments, and track your health journey with our user-friendly mobile application.
+              </p>
+              <div className="app-buttons">
+                <a href="#" className="app-button">
+                  <i className="fab fa-google-play"></i>
+                  <div className="button-text">
+                    <span>GET IT ON</span>
+                    <strong>Google Play</strong>
+                  </div>
+                </a>
+                <a href="#" className="app-button">
+                  <i className="fab fa-apple"></i>
+                  <div className="button-text">
+                    <span>Download on the</span>
+                    <strong>App Store</strong>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }
 

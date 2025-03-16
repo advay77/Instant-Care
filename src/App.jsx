@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-import HeroSection from './components/HeroSection';
 import Signin from "./Homepagecomponents/Signin";
 import HomePage from "./components/HomePage";
 import { BloodBank } from "./Features.jsx/BloodBank";
@@ -7,45 +6,47 @@ import { Appointment } from "./Features.jsx/Appointment";
 import { EmergencyServices } from "./Features.jsx/EmergencyServices";
 import { HospitalBed } from "./Features.jsx/HospitalBed";
 import Layout from './components/Layout';
+import ServiceDetails from './components/ServiceDetails';
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<HeroSection />} />
       <Route path="/signin" element={<Signin />} />
-      <Route path="/HomePage" element={<HomePage />} />
-      <Route
-        path="/hospital-beds"
-        element={
-          <Layout>
-            <HospitalBed />
-          </Layout>
-        }
-      />
-      <Route
-        path="/blood-bank"
-        element={
-          <Layout>
-            <BloodBank />
-          </Layout>
-        }
-      />
-      <Route
-        path="/appointment"
-        element={
-          <Layout>
-            <Appointment />
-          </Layout>
-        }
-      />
-      <Route
-        path="/emergency-services"
-        element={
-          <Layout>
-            <EmergencyServices />
-          </Layout>
-        }
-      />
+      <Route path="/" element={
+        <Layout>
+          <HomePage />
+        </Layout>
+      } />
+      <Route path="/homepage" element={
+        <Layout>
+          <HomePage />
+        </Layout>
+      } />
+      <Route path="/hospital-beds" element={
+        <Layout>
+          <HospitalBed />
+        </Layout>
+      } />
+      <Route path="/blood-bank" element={
+        <Layout>
+          <BloodBank />
+        </Layout>
+      } />
+      <Route path="/appointment" element={
+        <Layout>
+          <Appointment />
+        </Layout>
+      } />
+      <Route path="/emergency-services" element={
+        <Layout>
+          <EmergencyServices />
+        </Layout>
+      } />
+      <Route path="/services/:serviceId" element={
+        <Layout>
+          <ServiceDetails />
+        </Layout>
+      } />
     </Routes>
   );
 }

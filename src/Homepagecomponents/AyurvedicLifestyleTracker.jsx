@@ -1,114 +1,224 @@
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Moon, Sun, Brain, Utensils, Activity, Heart, X } from 'lucide-react';
+import './AyurvedicLifestyleTracker.css';
 
-const AyurvedicLifestyleTracker = () => {
-  const [diet, setDiet] = useState('');
-  const [sleep, setSleep] = useState('');
-  const [stress, setStress] = useState('');
-  const [wellnessTips, setWellnessTips] = useState('');
+function AyurvedicLifestyleTracker() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    diet: '',
+    sleep: '',
+    stress: '',
+    exercise: '',
+    symptoms: ''
+  });
+  const [analysis, setAnalysis] = useState(null);
 
-  const apiKey = 'AIzaSyAC3TovZwqUEW9lrvYuXLBjIiZY2sqXBpE'; // Replace with your actual API key
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
-  const handleTrack = async () => {
+  const generatePrompt = (data) => {
+    return `As an Ayurvedic health expert, provide a concise 100-150 word analysis and personalized suggestions based on the following information:
+    Diet: ${data.diet}
+    Sleep Pattern: ${data.sleep}
+    Stress Level: ${data.stress}
+    Exercise Routine: ${data.exercise}
+    Current Symptoms: ${data.symptoms}
+    
+    Format the response in markdown with two sections:
+    1. Analysis of Current State
+    2. Personalized Recommendations`;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setLoading(true);
-    setWellnessTips('');
-
+    
     try {
-      const prompt = `Provide daily Ayurvedic wellness tips based on the following information: Diet: ${diet}, Sleep: ${sleep}, Stress: ${stress}. Keep the tips concise and practical.`;
-
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+      // Here we'll integrate with Gemini API
+      // For now using placeholder response
+      const response = await fetch('YOUR_GEMINI_API_ENDPOINT', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-        }),
+          prompt: generatePrompt(formData)
+        })
       });
-
+      
       const data = await response.json();
-      if (data.candidates && data.candidates.length > 0 && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts.length > 0) {
-        setWellnessTips(data.candidates[0].content.parts[0].text);
-      } else {
-        setWellnessTips("Could not retrieve wellness tips.");
-      }
+      setAnalysis(data.response);
     } catch (error) {
-      console.error('Error fetching wellness tips:', error);
-      setWellnessTips("Error retrieving wellness tips.");
+      console.error('Error:', error);
+      setAnalysis("We're experiencing technical difficulties. Please try again later.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section className="py-5">
+    <div className="lifestyle-tracker">
       <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-lg-8 text-center">
-            <h2>Ayurvedic Lifestyle Tracker</h2>
-            <p className="lead">
-              Monitor your diet, sleep, stress, and receive personalized daily wellness tips.
-            </p>
+        <div className="section-header">
+          <h2 className="section-title">Ayurvedic Lifestyle Tracker</h2>
+          <p className="section-subtitle">
+            Monitor your diet, sleep, stress, and receive personalized daily wellness tips.
+          </p>
+        </div>
+
+        <div className="features-grid">
+          <div className="feature-card">
+            <div className="feature-icon">
+              <Utensils size={32} />
+            </div>
+            <h3>Diet Tracking</h3>
+            <p>Track your meals and receive personalized dietary recommendations based on your dosha type.</p>
+          </div>
+
+          <div className="feature-card">
+            <div className="feature-icon">
+              <Moon size={32} />
+            </div>
+            <h3>Sleep Analysis</h3>
+            <p>Monitor your sleep patterns and get insights to improve your rest quality.</p>
+          </div>
+
+          <div className="feature-card">
+            <div className="feature-icon">
+              <Brain size={32} />
+            </div>
+            <h3>Stress Management</h3>
+            <p>Track stress levels and receive guided meditation and breathing exercises.</p>
+          </div>
+
+          <div className="feature-card">
+            <div className="feature-icon">
+              <Activity size={32} />
+            </div>
+            <h3>Activity Monitoring</h3>
+            <p>Log your daily activities and get recommendations for balanced exercise.</p>
+          </div>
+
+          <div className="feature-card">
+            <div className="feature-icon">
+              <Heart size={32} />
+            </div>
+            <h3>Wellness Score</h3>
+            <p>Get a daily wellness score based on your lifestyle choices and habits.</p>
+          </div>
+
+          <div className="feature-card">
+            <div className="feature-icon">
+              <Sun size={32} />
+            </div>
+            <h3>Daily Routine</h3>
+            <p>Personalized daily routine suggestions aligned with Ayurvedic principles.</p>
           </div>
         </div>
-        <div className="row justify-content-center mt-4">
-          <div className="col-md-6">
-            <div className="mb-3">
-              <label htmlFor="diet" className="form-label">Diet:</label>
-              <input
-                type="text"
-                className="form-control"
-                id="diet"
-                placeholder="e.g., Vegetarian, Balanced"
-                value={diet}
-                onChange={(e) => setDiet(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="sleep" className="form-label">Sleep:</label>
-              <input
-                type="text"
-                className="form-control"
-                id="sleep"
-                placeholder="e.g., 7 hours, Restless"
-                value={sleep}
-                onChange={(e) => setSleep(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="stress" className="form-label">Stress:</label>
-              <input
-                type="text"
-                className="form-control"
-                id="stress"
-                placeholder="e.g., High, Moderate"
-                value={stress}
-                onChange={(e) => setStress(e.target.value)}
-              />
-            </div>
-            <div className="d-grid">
-              <button className="btn" style={{ backgroundColor: '#693382', color: '#FFFFFF'}} onClick={handleTrack} disabled={loading}>
-                {loading ? 'Loading...' : 'Get Wellness Tips'}
+
+        <div className="cta-container">
+          <button className="start-tracking-btn" onClick={() => setIsModalOpen(true)}>
+            Start Tracking Your Lifestyle
+            <span className="btn-arrow">→</span>
+          </button>
+          <p className="cta-subtitle">Get personalized Ayurvedic insights based on your lifestyle</p>
+        </div>
+
+        {isModalOpen && (
+          <div className="modal-overlay">
+            <div className="modal-content">
+              <button className="modal-close" onClick={() => setIsModalOpen(false)}>
+                <X size={24} />
               </button>
-            </div>
-          </div>
-        </div>
-        {wellnessTips && (
-          <div className="row justify-content-center mt-4">
-            <div className="col-lg-8">
-              <div className="card shadow-sm">
-                <div className="card-body d-flex align-items-center flex-column">
-                  <h5 className="card-title">Daily Wellness Tips</h5>
-                  <p className="card-text">{wellnessTips}</p>
+              
+              <h3 className="modal-title">Track Your Ayurvedic Lifestyle</h3>
+              
+              <form onSubmit={handleSubmit} className="tracker-form">
+                <div className="form-group">
+                  <label htmlFor="diet">What did you eat today?</label>
+                  <textarea
+                    id="diet"
+                    name="diet"
+                    value={formData.diet}
+                    onChange={handleInputChange}
+                    placeholder="List your meals and timing..."
+                    required
+                  />
                 </div>
-              </div>
+
+                <div className="form-group">
+                  <label htmlFor="sleep">How was your sleep last night?</label>
+                  <textarea
+                    id="sleep"
+                    name="sleep"
+                    value={formData.sleep}
+                    onChange={handleInputChange}
+                    placeholder="Sleep duration and quality..."
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="stress">Current stress level and mood?</label>
+                  <textarea
+                    id="stress"
+                    name="stress"
+                    value={formData.stress}
+                    onChange={handleInputChange}
+                    placeholder="Describe your stress level and emotional state..."
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="exercise">Physical activity today?</label>
+                  <textarea
+                    id="exercise"
+                    name="exercise"
+                    value={formData.exercise}
+                    onChange={handleInputChange}
+                    placeholder="Type and duration of exercise..."
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="symptoms">Any current health concerns?</label>
+                  <textarea
+                    id="symptoms"
+                    name="symptoms"
+                    value={formData.symptoms}
+                    onChange={handleInputChange}
+                    placeholder="Current symptoms or health issues..."
+                    required
+                  />
+                </div>
+
+                <button type="submit" className="submit-btn" disabled={loading}>
+                  {loading ? 'Analyzing...' : 'Get Ayurvedic Insights'}
+                </button>
+              </form>
+
+              {analysis && (
+                <div className="analysis-results">
+                  <h4>Your Personalized Ayurvedic Insights</h4>
+                  <div className="markdown-content">
+                    {analysis}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )}
       </div>
-    </section>
+    </div>
   );
-};
+}
 
 export default AyurvedicLifestyleTracker;
