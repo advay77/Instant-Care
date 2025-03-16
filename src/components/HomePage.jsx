@@ -46,11 +46,6 @@ const AboutPage = lazy(() => withErrorLogging(
   "AboutPage"
 ));
 
-const ApplicationSection = lazy(() => withErrorLogging(
-  () => import("../Homepagecomponents/ApplicationSection"),
-  "ApplicationSection"
-));
-
 const TestimonialsSection = lazy(() => withErrorLogging(
   () => import("../Homepagecomponents/TestimonialsSection"),
   "TestimonialsSection"
@@ -106,7 +101,7 @@ function HomePage() {
         </section>
 
         {/* Trust Indicators */}
-        <section className="trusted-section bg-light py-4">
+        <section className="trusted-section bg-light">
           <Suspense fallback={<SectionLoader />}>
             <Trusted />
           </Suspense>
@@ -122,7 +117,7 @@ function HomePage() {
           </section>
 
           {/* Services Section */}
-          <section className="services-section py-5 bg-light">
+          <section className="services-section bg-light">
             <Suspense fallback={<SectionLoader />}>
               <ServicesSection />
             </Suspense>
@@ -136,28 +131,27 @@ function HomePage() {
           </section>
 
           {/* Rating Section */}
-          <section className="rating-section py-5 bg-light">
+          <section className="rating-section bg-light">
             <Suspense fallback={<SectionLoader />}>
               <RatingSection />
             </Suspense>
           </section>
 
           {/* About Section */}
-          <section className="about-section py-5">
+          <section className="about-section">
             <Suspense fallback={<SectionLoader />}>
               <AboutPage />
             </Suspense>
           </section>
 
           {/* Application Section */}
-          <section className="application-section py-5 bg-light">
+          <section className="application-section bg-light">
             <Suspense fallback={<SectionLoader />}>
-              <ApplicationSection />
             </Suspense>
           </section>
 
           {/* Testimonials Section */}
-          <section className="testimonials-section py-5">
+          <section className="testimonials-section">
             <Suspense fallback={<SectionLoader />}>
               <TestimonialsSection />
             </Suspense>

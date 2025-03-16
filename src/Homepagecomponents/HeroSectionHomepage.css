@@ -47,7 +47,6 @@
     min-height: 90vh;
     display: flex;
     align-items: center;
-    padding: 4rem 0;
     background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
     overflow: hidden;
     position: relative;

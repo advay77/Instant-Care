@@ -12,6 +12,9 @@ function AyurvedicLifestyleTracker() {
     exercise: '',
     symptoms: ''
   });
+
+  const apiKey = 'AIzaSyAC3TovZwqUEW9lrvYuXLBjIiZY2sqXBpE';
+
   const [analysis, setAnalysis] = useState(null);
 
   const handleInputChange = (e) => {
@@ -38,22 +41,28 @@ function AyurvedicLifestyleTracker() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
+  
     try {
-      // Here we'll integrate with Gemini API
-      // For now using placeholder response
-      const response = await fetch('YOUR_GEMINI_API_ENDPOINT', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          prompt: generatePrompt(formData)
-        })
-      });
-      
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: generatePrompt(formData) }] }],
+          }),
+        }
+      );
+  
       const data = await response.json();
-      setAnalysis(data.response);
+  
+      if (data.candidates && data.candidates.length > 0) {
+        setAnalysis(data.candidates[0].content.parts[0].text);
+      } else {
+        setAnalysis("No insights available at the moment. Please try again.");
+      }
     } catch (error) {
       console.error('Error:', error);
       setAnalysis("We're experiencing technical difficulties. Please try again later.");
@@ -61,6 +70,7 @@ function AyurvedicLifestyleTracker() {
       setLoading(false);
     }
   };
+  
 
   return (
     <div className="lifestyle-tracker">

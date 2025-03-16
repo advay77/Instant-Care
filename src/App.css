@@ -23,11 +23,6 @@ body {
 }
 
 /* Layout and Container */
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
 
 /* Card Styles */
 .card {
@@ -140,9 +135,6 @@ body {
     font-size: 2.5rem;
   }
   
-  .container {
-    padding: 0 1.5rem;
-  }
   
   .services-grid {
     grid-template-columns: 1fr;

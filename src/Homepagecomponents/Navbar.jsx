@@ -124,7 +124,7 @@ function Navbar() {
             <li className="nav-item">
               <Link
                 className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
-                to="/"
+                to="#"
               >
                 Home
               </Link>
@@ -132,7 +132,7 @@ function Navbar() {
             <li className="nav-item">
               <Link
                 className={`nav-link ${location.pathname === '/ayurvedic' ? 'active' : ''}`}
-                to="/ayurvedic"
+                to="#"
               >
                 Ayurvedic Health
               </Link>
@@ -140,7 +140,7 @@ function Navbar() {
             <li className="nav-item">
               <Link
                 className={`nav-link ${location.pathname === '/services' ? 'active' : ''}`}
-                to="/services"
+                to="#"
               >
                 Services
               </Link>
@@ -148,7 +148,7 @@ function Navbar() {
             <li className="nav-item">
               <Link
                 className={`nav-link ${location.pathname === '/contact' ? 'active' : ''}`}
-                to="/contact"
+                to="#"
               >
                 Contact
               </Link>
