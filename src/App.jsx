@@ -40,7 +40,7 @@ function App() {
           <Layout>
           <BloodBank />
           </Layout>} />
-      <Route path='Feature' element = {
+      <Route path='/feature' element = {
         <Layout>
         <Feature />
         </Layout>
