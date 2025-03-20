@@ -2,42 +2,40 @@ import React from 'react';
 
 const AyurvedicTreatment = () => {
   return (
-    <div className="container my-5">
+    <div className="container py-4 mt-5 ">
       <h1 className="text-center mb-4">Ayurvedic Treatment</h1>
       <p className="lead text-center">
         Discover the ancient wisdom of Ayurveda for holistic healing and well-being.
       </p>
 
       <div className="row">
-        {/* Image and Description 1 */}
         <div className="col-md-4 mb-4">
           <div className="card">
             <img
-              src="https://via.placeholder.com/300x200" // Replace with your image URL
+              src="https://samwarthika.com/articles/wp-content/uploads/2023/08/blog-image-ayurveda-treatment-in-singapore.jpg"
               className="card-img-top"
               alt="Panchakarma Therapy"
             />
             <div className="card-body">
               <h5 className="card-title">Panchakarma Therapy</h5>
               <p className="card-text">
-                A detoxification process that cleanses the body and restores balance.
+              It offers a wealth of natural curative methods intended for the betterment of humanity. Among its various branches, Panchakarma stands out as particularly prominent. 
               </p>
             </div>
           </div>
         </div>
 
-        {/* Image and Description 2 */}
         <div className="col-md-4 mb-4">
           <div className="card">
             <img
-              src="https://via.placeholder.com/300x200" // Replace with your image URL
+              src="https://media.post.rvohealth.io/wp-content/uploads/2024/02/Ayurvedic-header.jpg" 
               className="card-img-top"
-              alt="Abhyanga Massage"
+              alt="Ayurvedic Herbs and Spices"
             />
             <div className="card-body">
-              <h5 className="card-title">Abhyanga Massage</h5>
+              <h5 className="card-title">Ayurvedic Herbs and Spices</h5>
               <p className="card-text">
-                A full-body oil massage that rejuvenates the skin and relaxes the muscles.
+              Ayurveda is a traditional Indian system of medicine. It aims to preserve health and wellness by keeping the mind, body, and spirit in balance and preventing disease rather than treating it.
               </p>
             </div>
           </div>
@@ -47,14 +45,14 @@ const AyurvedicTreatment = () => {
         <div className="col-md-4 mb-4">
           <div className="card">
             <img
-              src="https://via.placeholder.com/300x200" // Replace with your image URL
+              src="https://atmabodhwellness.com/wp-content/uploads/2023/11/image-3-1024x576.png" // Replace with your image URL
               className="card-img-top"
               alt="Shirodhara Treatment"
             />
             <div className="card-body">
               <h5 className="card-title">Shirodhara Treatment</h5>
               <p className="card-text">
-                A calming therapy where warm oil is poured on the forehead to relieve stress.
+              Shirodhara involves the application of oil to the forehead and scalp, constituting a remarkable body cleansing therapy coupled with a relaxation procedure.
               </p>
             </div>
           </div>
