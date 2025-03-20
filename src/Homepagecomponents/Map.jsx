@@ -2,7 +2,7 @@ import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 
 const icon = L.icon({
   iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
@@ -20,7 +20,7 @@ function Map({ hospitals, onHospitalSelect }) {
         center={[20.5937, 78.9629]}
         zoom={5}
         className="w-100 rounded shadow"
-        style={{ height: '600px' }} // Set a fixed height
+        style={{ height: '600px' }} 
         zoomControl={false}
       >
         <TileLayer

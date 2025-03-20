@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import Signin from "./Homepagecomponents/Signin"
+import Signin from "./Homepagecomponents/Signin";
+import HomePage from "./components/HomePage";
 import ServicesSection from './Homepagecomponents/ServicesSection';
 import Appointment from './Services/Appointment'; 
 import AyurvedicTreatment from './Services/AyurvedicTreatment'; 

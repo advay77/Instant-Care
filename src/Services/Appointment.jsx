@@ -66,7 +66,7 @@ const Appointment = () => {
         <h2 style={{ color: "#640D5F" }}>Book Online Medical Consultation</h2>
       </div>
 
-      <div className="modal-content">
+      <div className="modal-contents w-100">
         <div className="modal-body">
           {!submitted ? (
             <form onSubmit={handleSubmit}>
