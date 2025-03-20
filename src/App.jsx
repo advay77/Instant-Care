@@ -7,8 +7,7 @@ import AyurvedicTreatment from './Services/AyurvedicTreatment';
 import BloodBank from './Services/BloodBank'; 
 import Layout from './components/Layout';
 import ServiceDetails from './components/ServiceDetails';
-import Feature from './Services/Feature';
-
+import Feature from './Services/Feature'; // Ensure this matches the file name
 
 function App() {
   return (
@@ -27,22 +26,26 @@ function App() {
       <Route path="/services" element={
         <Layout>
           <ServicesSection />
-          </Layout>} />
-        <Route path="/services/appointment" element={
-           <Layout>
-          <Appointment />
-          </Layout>} />
-        <Route path="/services/ayurvedic-treatment" element={
-          <Layout>
-            <AyurvedicTreatment />
-            </Layout>} />
-        <Route path="/services/blood-bank" element={
-          <Layout>
-          <BloodBank />
-          </Layout>} />
-      <Route path='/Feature' element = {
+        </Layout>
+      } />
+      <Route path="/services/appointment" element={
         <Layout>
-        <Feature />
+          <Appointment />
+        </Layout>
+      } />
+      <Route path="/services/ayurvedic-treatment" element={
+        <Layout>
+          <AyurvedicTreatment />
+        </Layout>
+      } />
+      <Route path="/services/blood-bank" element={
+        <Layout>
+          <BloodBank />
+        </Layout>
+      } />
+      <Route path="/feature" element={
+        <Layout>
+          <Feature />
         </Layout>
       } />
       <Route path="/services/:serviceId" element={
