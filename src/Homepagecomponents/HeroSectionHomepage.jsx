@@ -6,7 +6,7 @@ const HeroSectionHomepage = () => {
 
   return (
     <div
-      className="hero-section"
+      className="hero-section mb-5"
       style={{
         position: "relative",
         overflow: "hidden",
