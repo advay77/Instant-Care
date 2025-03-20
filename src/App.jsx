@@ -7,7 +7,7 @@ import AyurvedicTreatment from './Services/AyurvedicTreatment';
 import BloodBank from './Services/BloodBank'; 
 import Layout from './components/Layout';
 import ServiceDetails from './components/ServiceDetails';
-import Feature from './Services/feature';
+import Feature from './Services/Feature';
 
 
 function App() {
@@ -40,7 +40,7 @@ function App() {
           <Layout>
           <BloodBank />
           </Layout>} />
-      <Route path='/feature' element = {
+      <Route path='/Feature' element = {
         <Layout>
         <Feature />
         </Layout>
