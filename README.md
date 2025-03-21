@@ -54,7 +54,8 @@ For production-level applications, it's best to integrate TypeScript for type sa
 
 ## 😎 PREVIEW 
 
-![Screenshot 2025-03-08 194108](https://github.com/user-attachments/assets/0e986048-2f40-4f24-9825-0e9a63a11a53)
+
+![Screenshot 2025-03-20 101308](https://github.com/user-attachments/assets/828cbfe2-63c9-4b71-9de7-dcb6092a28a6)
 
 
 ## 🚀 Deployment
