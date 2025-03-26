@@ -12,7 +12,7 @@ const Chatbot = () => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const apiKey = 'AIzaSyB4OPrYOlBCIC3Gl66vZ7Aj3hYJsCaNH1I'; // Replace with your actual API key
+  const apiKey = 'AIzaSyB4OPrYOlBCIC3Gl66vZ7Aj3hYJsCaNH1I'; //GEMINI API KEY
 
   const handleUserInput = async () => {
     if (!input.trim()) return;
