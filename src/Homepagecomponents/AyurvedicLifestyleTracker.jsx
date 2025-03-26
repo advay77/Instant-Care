@@ -14,6 +14,7 @@ function AyurvedicLifestyleTracker() {
   });
 
   const apiKey = 'AIzaSyAC3TovZwqUEW9lrvYuXLBjIiZY2sqXBpE';
+  //Gemini API KEY USED HERE
 
   const [analysis, setAnalysis] = useState(null);
 
