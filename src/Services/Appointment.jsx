@@ -258,7 +258,7 @@ const Appointment = () => {
                 onClick={resetForm}
                 style={{ color: "#640D5F" }}
               >
-                Book Another Consultation
+                Book Another Appointments 
               </button>
             </div>
           )}
