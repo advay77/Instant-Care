@@ -62,7 +62,7 @@ For production-level applications, it's best to integrate TypeScript for type sa
 
 Your project is live! 🌎
 
-🔗 Instant Care App → [https://instant-care.vercel.app/](https://instant-care-tau.vercel.app/) 🌟
+🔗 Instant Care App → (https://instant-care-tau.vercel.app/) 🌟
 
 ## 🎨 Want to Customize?
 
