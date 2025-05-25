@@ -109,3 +109,99 @@
 .contact-socials a:hover {
   color: #225ea8;
 }
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
+  animation: fadeInBg 1s;
+}
+
+@keyframes fadeInBg {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.auth-card {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px rgba(49,130,206,0.10);
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  width: 100%;
+  max-width: 400px;
+  animation: slideUp 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.auth-card h2 {
+  color: #2d3a4b;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.auth-card input {
+  padding: 0.9rem 1.1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.7rem;
+  font-size: 1.05rem;
+  outline: none;
+  transition: border 0.2s;
+  background: #f7fafc;
+}
+
+.auth-card input:focus {
+  border-color: #3182ce;
+  background: #e0eafc;
+}
+
+.auth-card button {
+  background: linear-gradient(90deg, #3182ce 60%, #225ea8 100%);
+  color: #fff;
+  border: none;
+  border-radius: 0.7rem;
+  padding: 0.9rem 1.1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  box-shadow: 0 2px 8px rgba(49,130,206,0.08);
+}
+
+.auth-card button:hover {
+  background: linear-gradient(90deg, #225ea8 60%, #3182ce 100%);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.auth-switch {
+  margin-top: 1.2rem;
+  text-align: center;
+  color: #4a5568;
+  font-size: 0.98rem;
+}
+
+.auth-switch a {
+  color: #3182ce;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 0.3rem;
+  transition: color 0.2s;
+}
+
+.auth-switch a:hover {
+  color: #225ea8;
+  text-decoration: underline;
+}

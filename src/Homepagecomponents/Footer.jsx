@@ -1,9 +1,22 @@
 import React from 'react';
-import { FaGithub, FaLinkedin, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaTwitter, FaInstagram, FaYoutube, FaWhatsapp } from 'react-icons/fa';
 
 function Footer() {
   return (
     <footer className="footer" style={{ backgroundColor: "#693382", color: "white" }}>
+      <style>{`
+        .footer .social-icons a {
+          color: white;
+          margin: 0 10px;
+          transition: color 0.2s, transform 0.2s;
+          display: inline-block;
+        }
+        .footer .social-icons a:hover {
+          color: #ffd700;
+          transform: scale(1.18) rotate(-8deg);
+          filter: drop-shadow(0 0 6px #cfdef3);
+        }
+      `}</style>
       <div className="container p-4">
         <div className="row">
           <div className="col-md-12 text-center mb-3">
@@ -67,7 +80,7 @@ function Footer() {
                 rel="noopener noreferrer"
                 style={{ color: "white", margin: "0 10px" }}
               >
-                <FaYoutube size={24} />
+                <FaWhatsapp size={24} />
               </a>
             </div>
           </div>
@@ -80,7 +93,7 @@ function Footer() {
 
           <div className="col-md-12 text-center">
             <p className="copyright" style={{ fontSize: "0.9rem" }}>
-              &copy; {new Date().getFullYear()} Instant-Care by CodeDrifter.
+              &copy; {new Date().getFullYear()} Instant-Care by Advay Anand.
             </p>
           </div>
         </div>

@@ -23,7 +23,8 @@ const Chatbot = () => {
     setIsLoading(true);
 
     try {
-      const prompt = `You are a HealthCare Assistant specializing in health and Ayurveda. Respond to the user's query while strictly staying within the domain of health and redefining health with Ayurveda. User query: ${input}`;
+      const prompt = `You are a HealthCare Assistant specializing in health and Ayurveda. Respond to the user's query while strictly staying within the domain of health and redefining health with Ayurveda keep your answers
+       short and logical. Also be friendly with user greetings. User query: ${input}`;
 
       const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
         method: 'POST',
