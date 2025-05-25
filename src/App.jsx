@@ -8,6 +8,7 @@ import BloodBank from './Services/BloodBank';
 import Layout from './components/Layout';
 import ServiceDetails from './components/ServiceDetails';
 import Feature from './Services/Feature'; // Ensure this matches the file name
+import Contact from "./components/Contact";
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
           <ServiceDetails />
         </Layout>
       } />
+      <Route path="/contact" element={<Contact />} />
     </Routes>
   );
 }

@@ -46,7 +46,7 @@ function Footer() {
                 <FaLinkedin size={24} />
               </a>
               <a
-                href="https://x.com/AnandAdvay91289
+                href="https://x.com/AnandAdvay91289"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ color: "white", margin: "0 10px" }}

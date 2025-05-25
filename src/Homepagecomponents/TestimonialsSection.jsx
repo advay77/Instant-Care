@@ -6,37 +6,37 @@ const testimonials = [
   {
     id: 1,
     text: "This platform has been a lifesaver! I was able to find a hospital bed for my grandmother in minutes, and the blood bank information was incredibly helpful.",
-    author: "Sarah Jones",
+    author: "Tanish Suneeta Pareek",
     role: "Patient's Family Member",
-    image: "https://randomuser.me/api/portraits/women/1.jpg"
+    image: "/tanish.png"
   },
   {
     id: 2,
     text: "I'm so grateful for the emergency services contact feature. It gave me peace of mind knowing I could quickly access help in a critical situation.",
-    author: "David Lee",
+    author: "Aarna Bhardwaj",
     role: "Regular User",
-    image: "https://randomuser.me/api/portraits/men/1.jpg"
+    image: "/aarna.jpg"
   },
   {
     id: 3,
     text: "Booking appointments online has never been easier. This website has made managing my healthcare needs so much more convenient.",
-    author: "Maria Garcia",
+    author: "Advay Anand",
     role: "Patient",
-    image: "https://randomuser.me/api/portraits/women/2.jpg"
+    image: "/Advay.jpeg"
   },
   {
     id: 4,
     text: "The Ayurvedic health reports are incredibly detailed and helpful. It's amazing to get such personalized health insights instantly.",
-    author: "Raj Patel",
+    author: "Sanskar Singh",
     role: "Wellness Enthusiast",
-    image: "https://randomuser.me/api/portraits/men/2.jpg"
+    image: "/sanskar.png"
   },
   {
     id: 5,
     text: "The blood donation tracking feature is excellent. It helps me keep track of my donations and reminds me when I'm eligible to donate again.",
-    author: "Emma Wilson",
+    author: "Kritika",
     role: "Regular Donor",
-    image: "https://randomuser.me/api/portraits/women/3.jpg"
+    image: "/kritika.png"
   }
 ];
 
