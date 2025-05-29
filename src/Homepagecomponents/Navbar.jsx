@@ -122,35 +122,39 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto me-4">
             <li className="nav-item">
-              <Link
-                className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
-                to="#"
+              <a
+                className={`nav-link${location.hash === '#hero-section' || location.pathname === '/' ? ' active' : ''}`}
+                href="/#hero-section"
+                onClick={() => setTimeout(() => {
+                  const el = document.getElementById('hero-section');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }, 0)}
               >
                 Home
-              </Link>
+              </a>
             </li>
             <li className="nav-item">
               <Link
-                className={`nav-link ${location.pathname === '/ayurvedic' ? 'active' : ''}`}
-                to="#"
+                className={`nav-link${location.pathname === '/services/ayurvedic' ? ' active' : ''}`}
+                to="/services/ayurvedic"
               >
                 Ayurvedic Health
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                className={`nav-link ${location.pathname === '/services' ? 'active' : ''}`}
-                to="#"
+                className={`nav-link${location.pathname === '/services' ? ' active' : ''}`}
+                to="/services"
               >
                 Services
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                className={`nav-link ${location.pathname === '/contact' ? 'active' : ''}`}
-                to="#"
+                className={`nav-link${location.pathname === '/contact' ? ' active' : ''}`}
+                to="/contact"
               >
-                Contact
+                Contact Us
               </Link>
             </li>
           </ul>

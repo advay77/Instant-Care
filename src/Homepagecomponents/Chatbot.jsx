@@ -14,6 +14,12 @@ const Chatbot = () => {
 
   const apiKey = 'AIzaSyB4OPrYOlBCIC3Gl66vZ7Aj3hYJsCaNH1I'; //GEMINI API KEY
 
+  const doctorContacts = [
+    { name: "Dr. Advay Anand (General Physician)", phone: "+91 98765 43210" },
+    { name: "Dr. Kritika Sharma (Ayurveda)", phone: "+91 91234 56789" },
+    { name: "Dr. Tanish Gupta (Consultant)", phone: "+91 99887 76655" }
+  ];
+
   const handleUserInput = async () => {
     if (!input.trim()) return;
 
@@ -22,9 +28,26 @@ const Chatbot = () => {
     setInput('');
     setIsLoading(true);
 
+    // Check for medical consultation intent
+    const lowerInput = input.toLowerCase();
+    if (
+      lowerInput.includes('consult') ||
+      lowerInput.includes('doctor') ||
+      lowerInput.includes('medical') ||
+      lowerInput.includes('appointment')
+    ) {
+      // Show doctor numbers and a button to redirect
+      const doctorList = doctorContacts.map(
+        doc => `**${doc.name}**\n📞 [${doc.phone}](tel:${doc.phone.replace(/\s+/g, '')})`
+      ).join('\n\n');
+      const consultMsg = `Here are some available doctors you can contact for a medical consultation:\n\n${doctorList}\n\n[Click here to book a medical consultation.](#book-consultation)`;
+      setMessages(prev => [...prev, { text: consultMsg, sender: 'bot', isConsult: true }]);
+      setIsLoading(false);
+      return;
+    }
+
     try {
-      const prompt = `You are a HealthCare Assistant specializing in health and Ayurveda. Respond to the user's query while strictly staying within the domain of health and redefining health with Ayurveda keep your answers
-       short and logical. Also be friendly with user greetings. User query: ${input}`;
+      const prompt = `You are a HealthCare Assistant specializing in health and Ayurveda. Respond to the user's query while strictly staying within the domain of health and redefining health with Ayurveda keep your answers\n short and logical. Also be friendly with user greetings. User query: ${input}`;
 
       const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
         method: 'POST',
@@ -96,7 +119,25 @@ const Chatbot = () => {
                 <div className="message-container">
                   <div className="message-row">
                     <div className="message">
-                      <ReactMarkdown>{msg.text}</ReactMarkdown>
+                      <ReactMarkdown
+                        components={{
+                          a: ({ href, children }) => {
+                            if (href === '#book-consultation') {
+                              return (
+                                <span
+                                  style={{ color: '#982cca', cursor: 'pointer', textDecoration: 'underline' }}
+                                  onClick={() => window.location.href = '/services/appointment'}
+                                >
+                                  {children}
+                                </span>
+                              );
+                            }
+                            return <a href={href} target="_blank" rel="noopener noreferrer">{children}</a>;
+                          }
+                        }}
+                      >
+                        {msg.text}
+                      </ReactMarkdown>
                     </div>
                   </div>
                 </div>

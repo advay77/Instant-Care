@@ -1,6 +1,7 @@
 import React, { Suspense, lazy, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import RatingSection from '../Homepagecomponents/RatingSection';
+import { FaHeartbeat, FaUserMd, FaStethoscope, FaLeaf, FaHospitalAlt, FaRegSmile } from 'react-icons/fa';
 
 // Lazy load components with error logging
 const withErrorLogging = (importFn, componentName) => {
@@ -157,6 +158,16 @@ function HomePage() {
             </Suspense>
           </section>
         </main>
+
+        {/* Animated Icons Row */}
+        <div className="dashboard-animated-icons" style={{display: 'flex', justifyContent: 'center', gap: '2.5rem', margin: '2.5rem 0 1.5rem 0', flexWrap: 'wrap'}}>
+          <span className="dash-icon-move" style={{animation: 'dash-bounce 2.2s infinite', color: '#693382', fontSize: 38}}><FaHeartbeat title="Health" /></span>
+          <span className="dash-icon-move" style={{animation: 'dash-bounce 2.5s 0.2s infinite', color: '#0D7C66', fontSize: 38}}><FaLeaf title="Ayurveda" /></span>
+          <span className="dash-icon-move" style={{animation: 'dash-bounce 2.1s 0.4s infinite', color: '#3182ce', fontSize: 38}}><FaUserMd title="Doctor" /></span>
+          <span className="dash-icon-move" style={{animation: 'dash-bounce 2.3s 0.1s infinite', color: '#FFB300', fontSize: 38}}><FaStethoscope title="Consultation" /></span>
+          <span className="dash-icon-move" style={{animation: 'dash-bounce 2.4s 0.3s infinite', color: '#A3A1FB', fontSize: 38}}><FaHospitalAlt title="Hospital" /></span>
+          <span className="dash-icon-move" style={{animation: 'dash-bounce 2.6s 0.5s infinite', color: '#38a169', fontSize: 38}}><FaRegSmile title="Wellness" /></span>
+        </div>
       </div>
 
       <style>
@@ -236,6 +247,19 @@ function HomePage() {
               transition: none;
               animation: none;
             }
+          }
+
+          @keyframes dash-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-16px) scale(1.08); }
+          }
+          .dashboard-animated-icons .dash-icon-move {
+            transition: transform 0.2s;
+            filter: drop-shadow(0 2px 8px rgba(49,130,206,0.10));
+          }
+          .dashboard-animated-icons .dash-icon-move:hover {
+            transform: scale(1.18) rotate(-8deg);
+            filter: drop-shadow(0 0 12px #69338233);
           }
         `}
       </style>
