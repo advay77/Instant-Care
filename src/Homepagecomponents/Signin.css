@@ -145,27 +145,92 @@
   text-decoration: underline;
 }
 
-@media (max-width: 768px) {
-  .signin-container {
-    padding: 1rem;
-  }
-  
-  .form-card {
-    border-radius: 10px;
-  }
+/* Auth method switch buttons */
+.auth-method-switch {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 1.5rem;
+}
+.auth-method-btn {
+  background: #fff;
+  color: #693382;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.5rem 1.2rem;
+  box-shadow: 0 2px 8px rgba(105,51,130,0.07);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.auth-method-btn.active, .auth-method-btn:focus {
+  background: linear-gradient(90deg, #a084e8 0%, #693382 100%);
+  color: #fff;
+  border-color: #693382;
+  box-shadow: 0 4px 16px #a084e822;
+}
+.auth-method-btn:hover:not(.active) {
+  background: #f3e9fa;
+  color: #693382;
+  border-color: #a084e8;
 }
 
-/* Loading animation */
-.loading-dots:after {
-  content: '.';
-  animation: dots 1.5s steps(5, end) infinite;
+/* Google button */
+.btn-google {
+  background: #fff;
+  color: #222;
+  border: 2px solid #e9ecef;
+  font-weight: 600;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #a084e822;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 1.08rem;
+  padding: 0.7rem 0;
+}
+.btn-google:hover {
+  background: #f3e9fa;
+  color: #693382;
+  border-color: #a084e8;
 }
 
+/* New background for more detail */
+.new-signin-bg {
+  background: linear-gradient(120deg, #ede7f6 0%, #a084e8 60%, #693382 100%);
+  min-height: 100vh;
+  padding: 2rem 0;
+  animation: bg-move 12s ease-in-out infinite alternate;
+}
+@keyframes bg-move {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.gradient-glow {
+  box-shadow: 0 0 24px 6px #a084e8cc, 0 2px 12px #69338255;
+  animation: glow 2.5s infinite alternate;
+}
+@keyframes glow {
+  0% { box-shadow: 0 0 24px 6px #a084e8cc, 0 2px 12px #69338255; }
+  100% { box-shadow: 0 0 36px 12px #693382cc, 0 2px 24px #a084e855; }
+}
+
+/* Loading dots animation */
+.loading-dots::after {
+  content: '...';
+  animation: dots 1.2s steps(3, end) infinite;
+}
 @keyframes dots {
-  0%, 20% { content: '.'; }
-  40% { content: '..'; }
-  60% { content: '...'; }
-  80%, 100% { content: ''; }
+  0%, 20% { content: ''; }
+  40% { content: '.'; }
+  60% { content: '..'; }
+  80%, 100% { content: '...'; }
 }
 
 /* Error message styling */
