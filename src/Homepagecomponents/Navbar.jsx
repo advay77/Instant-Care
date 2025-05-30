@@ -135,8 +135,8 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <Link
-                className={`nav-link${location.pathname === '/services/ayurvedic' ? ' active' : ''}`}
-                to="/services/ayurvedic"
+                className={`nav-link${location.pathname === '/services/ayurvedic-treatment' ? ' active' : ''}`}
+                to="/services/ayurvedic-treatment"
               >
                 Ayurvedic Health
               </Link>

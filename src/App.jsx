@@ -54,7 +54,11 @@ function App() {
           <ServiceDetails />
         </Layout>
       } />
-      <Route path="/contact" element={<Contact />} />
+      <Route path="/contact" element={
+        <Layout>
+          <Contact />
+        </Layout>
+      } />
     </Routes>
   );
 }
