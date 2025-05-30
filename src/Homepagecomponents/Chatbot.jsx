@@ -15,7 +15,8 @@ const Chatbot = () => {
   const apiKey = 'AIzaSyB4OPrYOlBCIC3Gl66vZ7Aj3hYJsCaNH1I'; //GEMINI API KEY
 
   const doctorContacts = [
-    { name: "Dr. Advay Anand (General Physician)", phone: "+91 98765 43210" },
+    { name: "Dr. Advay Anand (General Physician)", phone: "+91 6386771480" },
+    { name: "Dr. Priya Singh (Ayurveda Specialist)", phone: "+91 98765 43210" },
     { name: "Dr. Kritika Sharma (Ayurveda)", phone: "+91 91234 56789" },
     { name: "Dr. Tanish Gupta (Consultant)", phone: "+91 99887 76655" }
   ];
