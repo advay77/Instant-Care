@@ -86,7 +86,7 @@ function ServicesSection() {
                   className="learn-more-btn"
                   onClick={() => handleLearnMore(service)}
                 >
-                  Learn More
+                  Click Here 
                 </button>
               </div>
             </div>
