@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RatingSection from '../Homepagecomponents/RatingSection';
 import { FaHeartbeat, FaUserMd, FaStethoscope, FaLeaf, FaHospitalAlt, FaRegSmile } from 'react-icons/fa';
@@ -61,7 +61,21 @@ const SectionLoader = () => (
   </div>
 );
 
+const searchOptions = [
+  { label: 'Ayurveda', path: '/services/ayurvedic-treatment' },
+  { label: 'Online Booking', path: '/services/appointment' },
+  { label: 'Map Booking', path: '/map' },
+  { label: 'Blood Bank', path: '/services/blood-bank' },
+  { label: 'Emergency Care', path: '/services/emergency' },
+  { label: 'Health Monitoring', path: '/services/monitoring' },
+  { label: 'Specialized Care', path: '/services/specialized' },
+  { label: 'Telemedicine', path: '/services/telemedicine' },
+  { label: 'Contact', path: '/contact' },
+];
+
 function HomePage() {
+  const [search, setSearch] = useState('');
+  const [results, setResults] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -91,6 +105,26 @@ function HomePage() {
     }
   }, [navigate]);
 
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearch(value);
+    if (value.trim() === '') {
+      setResults([]);
+      return;
+    }
+    setResults(
+      searchOptions.filter(opt =>
+        opt.label.toLowerCase().includes(value.toLowerCase())
+      )
+    );
+  };
+
+  const handleResultClick = (path) => {
+    setSearch('');
+    setResults([]);
+    navigate(path);
+  };
+
   return (
     <>
       <div className="homepage">
@@ -100,6 +134,75 @@ function HomePage() {
             <HeroSectionHomepage />
           </Suspense>
         </section>
+
+        {/* Search Bar - now above Trusted section */}
+        <div className="search-bar-container themed-search-bar" style={{
+          maxWidth: 480,
+          margin: '0 auto',
+          marginTop: 32,
+          marginBottom: 32,
+          position: 'relative',
+          zIndex: 10,
+          boxShadow: '0 6px 32px #a084e822',
+          background: 'linear-gradient(90deg, #ede7f6 0%, #a084e8 60%, #693382 100%)',
+          borderRadius: '2rem',
+          border: '2.5px solid #a084e8',
+        }}>
+          <input
+            type="text"
+            className="search-bar-input"
+            placeholder="Search Ayurveda, Booking, Blood Bank, ..."
+            value={search}
+            onChange={handleSearch}
+            style={{
+              width: '100%',
+              padding: '1.1rem 1.4rem',
+              borderRadius: '2rem',
+              border: 'none',
+              fontSize: '1.13rem',
+              outline: 'none',
+              background: 'transparent',
+              color: '#693382',
+              fontWeight: 600,
+              boxShadow: 'none',
+              transition: 'border 0.2s, box-shadow 0.2s',
+            }}
+          />
+          {results.length > 0 && (
+            <div className="search-results-dropdown" style={{
+              position: 'absolute',
+              top: '110%',
+              left: 0,
+              right: 0,
+              background: '#fff',
+              borderRadius: '1.2rem',
+              boxShadow: '0 4px 24px #a084e822',
+              zIndex: 10,
+              padding: '0.5rem 0',
+            }}>
+              {results.map((opt, idx) => (
+                <div
+                  key={opt.label}
+                  className="search-result-item"
+                  style={{
+                    padding: '0.8rem 1.4rem',
+                    cursor: 'pointer',
+                    color: '#693382',
+                    fontWeight: 500,
+                    borderBottom: idx !== results.length - 1 ? '1px solid #f3e9fa' : 'none',
+                    background: 'transparent',
+                    transition: 'background 0.2s',
+                  }}
+                  onClick={() => handleResultClick(opt.path)}
+                  onMouseOver={e => e.currentTarget.style.background = '#ede7f6'}
+                  onMouseOut={e => e.currentTarget.style.background = 'transparent'}
+                >
+                  {opt.label}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
         {/* Trust Indicators */}
         <section className="trusted-section bg-light">
@@ -260,6 +363,19 @@ function HomePage() {
           .dashboard-animated-icons .dash-icon-move:hover {
             transform: scale(1.18) rotate(-8deg);
             filter: drop-shadow(0 0 12px #69338233);
+          }
+
+          .themed-search-bar input.search-bar-input::placeholder {
+            color: #a084e8;
+            opacity: 1;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+          }
+          .themed-search-bar input.search-bar-input:focus {
+            border: 2px solid #693382;
+            box-shadow: 0 0 0 2px #a084e855;
+            background: linear-gradient(90deg, #ede7f6 0%, #a084e8 60%, #693382 100%);
+            color: #693382;
           }
         `}
       </style>
