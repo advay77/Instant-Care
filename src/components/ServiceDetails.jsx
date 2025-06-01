@@ -75,11 +75,11 @@ function ServiceDetails() {
                 <div className="contact-info">
                   <div className="contact-item">
                     <strong>Phone:</strong>
-                    <span>1-800-INSTANT</span>
+                    <span>+91 6386771480</span>
                   </div>
                   <div className="contact-item">
                     <strong>Email:</strong>
-                    <span>care@instant-care.com</span>
+                    <span>advayanand87@gmail.com</span>
                   </div>
                 </div>
               </div>
