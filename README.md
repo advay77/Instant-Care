@@ -16,7 +16,7 @@ Welcome to Instant Care 🏥, a one-stop solution for all your healthcare needs!
 - 🔹 **Backend**: Node.js + Express.js 🌐
 - 🔹 **Database**: MongoDB 🛢️
 - 🔹 **Authentication**: Firebase/Auth0 🔐
-- 🔹 **Maps & Location**: Leaflet.js for real-time tracking 🗺️
+- 🔹 **Maps & Location**: Leaflet.js for real-time hospital tracking 🗺️
 - 🔹 **Deployment**: Vercel for frontend, Render/Heroku for backend 🚀
 
 ## 🛠️ Setup & Installation
