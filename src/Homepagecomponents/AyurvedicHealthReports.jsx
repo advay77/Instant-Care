@@ -8,7 +8,7 @@ function AyurvedicHealthReports() {
   const [searchResults, setSearchResults] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const apiKey = 'AIzaSyB4OPrYOlBCIC3Gl66vZ7Aj3hYJsCaNH1I';
+  const apiKey = 'AIzaSyA_lYY7xjeJ2Yg40rBgz7F6Hj-9Toaxpns';
 
   const fetchGeminiResponse = async (prompt) => {
     try {
