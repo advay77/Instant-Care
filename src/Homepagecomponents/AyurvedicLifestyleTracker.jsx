@@ -13,7 +13,7 @@ function AyurvedicLifestyleTracker() {
     symptoms: ''
   });
 
-  const apiKey = 'AIzaSyAC3TovZwqUEW9lrvYuXLBjIiZY2sqXBpE';
+  const apiKey = 'AIzaSyA_lYY7xjeJ2Yg40rBgz7F6Hj-9Toaxpns';
   //Gemini API KEY USED HERE
 
   const [analysis, setAnalysis] = useState(null);
