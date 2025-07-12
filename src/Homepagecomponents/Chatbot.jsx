@@ -12,7 +12,7 @@ const Chatbot = () => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const apiKey = 'AIzaSyB4OPrYOlBCIC3Gl66vZ7Aj3hYJsCaNH1I'; //GEMINI API KEY
+  const apiKey = 'AIzaSyA_lYY7xjeJ2Yg40rBgz7F6Hj-9Toaxpns'; //GEMINI API KEY
 
   const doctorContacts = [
     { name: "Dr. Advay Anand (General Physician)", phone: "+91 6386771480" },
